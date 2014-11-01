@@ -3,8 +3,8 @@ Section: ruby
 Priority: optional
 Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
 Uploaders: Balasankar C <balasankarc@autistici.org>
-Build-Depends: debhelper (>= 7.0.50~), gem2deb
-Standards-Version: 3.9.5
+Build-Depends: debhelper (>= 7.0.50~), gem2deb, ruby-activerecord, ruby-sqlite3
+Standards-Version: 3.9.6
 Vcs-Git: git://anonscm.debian.org/pkg-ruby-extras/ruby-default-value-for.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-ruby-extras/ruby-default-value-for.git;a=summary
 Homepage: https://github.com/FooBarWidget/default_value_for
@@ -14,7 +14,7 @@ XS-Ruby-Versions: all
 Package: ruby-default-value-for
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby | ruby-interpreter
-# activerecord (< 5.0, >= 3.2.0), railties (< 5.0, >= 3.2.0, development), minitest (>= 4.2, development)
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby | ruby-interpreter, ruby-activerecord
 Description: Provides a way to specify default values for ActiveRecord models
- The default_value_for plugin allows one to define default values for ActiveRecord models in a declarative manner
+ The default_value_for plugin allows one to define default values for 
+ ActiveRecord models in a declarative manner
