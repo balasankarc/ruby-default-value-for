@@ -18,6 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+require 'bundler/setup'
 require 'minitest/autorun'
 require 'active_record'
 require 'active_support/dependencies'

@@ -1,3 +1,11 @@
+ruby-default-value-for (3.0.0.1-2) experimental; urgency=medium
+
+  * Debian update
+  * Fixing the test.rb file which was altered in previous version due to
+    incorrect patching 
+
+ -- Balasankar C <balasankarc@autistici.org>  Mon, 29 Dec 2014 18:12:41 +0530
+
 ruby-default-value-for (3.0.0.1-1) unstable; urgency=medium
 
   * Initial release (Closes: #767631)
