@@ -144,7 +144,9 @@ module DefaultValueFor
     end
 
     def attributes_for_create(attribute_names)
-      attribute_names += _default_attribute_values.keys.map(&:to_s)
+      attribute_names += self.class._all_default_attribute_values.keys.map(&:to_s).find_all { |name|
+        self.class.columns_hash.key?(name)
+      }
       super
     end
 
@@ -163,10 +165,22 @@ module DefaultValueFor
         next unless connection_default_value_defined || attribute_blank
 
         # allow explicitly setting nil through allow nil option
-        next if @initialization_attributes.is_a?(Hash) && @initialization_attributes.has_key?(attribute) && !self.class._all_default_attribute_values_not_allowing_nil.include?(attribute)
+        next if @initialization_attributes.is_a?(Hash) &&
+                (
+                  @initialization_attributes.has_key?(attribute) ||
+                  (
+                    @initialization_attributes.has_key?("#{attribute}_attributes") &&
+                    nested_attributes_options.stringify_keys[attribute]
+                  )
+                ) &&
+                !self.class._all_default_attribute_values_not_allowing_nil.include?(attribute)
 
         __send__("#{attribute}=", container.evaluate(self))
-        changed_attributes.delete(attribute)
+        if self.class.private_instance_methods.include? :clear_attribute_changes
+          clear_attribute_changes attribute
+        else
+          changed_attributes.delete(attribute)
+        end
       end
     end
   end
@@ -175,6 +189,6 @@ end
 if defined?(Rails::Railtie)
   require 'default_value_for/railtie'
 else
-  # Rails 2 initialization
+  # For anybody is using AS and AR without Railties, i.e. Padrino.
   ActiveRecord::Base.extend(DefaultValueFor::ClassMethods)
 end
