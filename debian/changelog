@@ -1,6 +1,11 @@
-ruby-default-value-for (3.0.0.1-2) experimental; urgency=medium
+ruby-default-value-for (3.0.1-1) unstable; urgency=medium
 
-  * Debian update
+  * Upstream update to version 3.0.1
+
+ -- Balasankar C <balasankarc@autistici.org>  Tue, 20 Jan 2015 18:20:41 +0530
+
+ruby-default-value-for (3.0.0.1-2) unstable; urgency=medium
+
   * Fixing the test.rb file which was altered in previous version due to
     incorrect patching 
 
